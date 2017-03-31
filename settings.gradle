@@ -1,0 +1,1 @@
+include ':app1:app', ':app1:app1library', ':app2:app', ':app1:library-lint'

@@ -1,0 +1,29 @@
+apply plugin: 'java'
+
+targetCompatibility = JavaVersion.VERSION_1_7
+sourceCompatibility = JavaVersion.VERSION_1_7
+
+configurations {
+    lintChecks
+}
+
+dependencies {
+    compile rootProject.ext.lintapi
+    compile rootProject.ext.lintchecks
+
+    lintChecks files(jar)
+
+    testCompile rootProject.ext.lint
+    testCompile rootProject.ext.linttests
+    testCompile rootProject.ext.testutils
+
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.assertj:assertj-core:3.0.0'
+    testCompile 'org.mockito:mockito-core:1.9.5'
+}
+
+jar {
+    manifest {
+        attributes('Lint-Registry': 'com.foursquare.lint.checks.IssueRegistry')
+    }
+}
